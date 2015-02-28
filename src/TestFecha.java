@@ -54,12 +54,29 @@ public class TestFecha {
 		Fecha primerDia = new Fecha(1, 1, 1);
 		Fecha ultimoDia = new Fecha(31, 12, 9999);
 		
-		assertThat("El 01/02/2011 es martes", martes.getDiaDeSemana(), is(3));
-		assertThat("El 01/02/2011 no es miercoles", martes.getDiaDeSemana(), is(not(4)));
+		assertThat("El 01/02/2011 es martes", martes.getDiaDeSemana(), is(2));
+		assertThat("El 01/02/2011 no es miercoles", martes.getDiaDeSemana(), is(not(3)));
 		assertThat("El 29/02/2012 es bisiesto", miercolesBisiesto.esBisiesto(), is(true));
-		assertThat("El 29/02/2012 de un anyo bisiesto es miercoles", miercolesBisiesto.getDiaDeSemana(), is(4));
+		assertThat("El 29/02/2012 de un anyo bisiesto es miercoles", miercolesBisiesto.getDiaDeSemana(), is(3));
 		assertThat("El 01/01/0001 es lunes", primerDia.getDiaDeSemana(), is(1));
-		assertThat("El 31/12/9999 es sabado", ultimoDia.getDiaDeSemana(), is(6));
+		assertThat("El 31/12/9999 es domingo", ultimoDia.getDiaDeSemana(), is(0));
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetFechaExcepcion()
+	{
+		Fecha erronea = new Fecha();
+		erronea.setFecha(0,0,0000);
+	}
+	
+	@Test
+	public void testSetFecha()
+	{
+		Fecha correcta = new Fecha();
+		correcta.setFecha(1, 11, 2012);
 		
+		assertThat("El dia debe ser 1", correcta.getDia(), is(1));
+		assertThat("El mes debe ser 11", correcta.getMes(), is(11));
+		assertThat("El anyo debe ser 2012", correcta.getAnyo(), is(2012));
 	}
 }

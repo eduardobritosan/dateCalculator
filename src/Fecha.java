@@ -102,8 +102,32 @@ public class Fecha {
 		}
 		return true;
 	}
+	/**
+	 * Calculo de el dia de la semana con el algoritmo de Gauss revisado.
+	 * @return
+	 */
 	public int getDiaDeSemana()
 	{
-		return 0;
+		double mes, dia, anyo, anyoY, anyoC;
+		int diaSemana;
+		String stringAnyo;
+		String []stringAnyoSeparada;
+		
+		dia = getDia();
+		if(getMes() == 1 || getMes() == 2)
+			anyo = getAnyo() - 1;
+		else
+			anyo = getAnyo();
+		mes = ((getMes() + 9) % 12) + 1;
+		stringAnyo = Double.toString(anyo);
+		stringAnyoSeparada = stringAnyo.split("(?<=\\G..)");
+		anyoC = Double.parseDouble(stringAnyoSeparada[0]);
+		anyoY = Double.parseDouble(stringAnyoSeparada[1]);
+		diaSemana = (int) ((dia + (2.6 * mes - 0.2) + anyoY + (anyoY / 4) + (anyoC / 4) - anyoC*2) % 7);
+		return diaSemana;
+	}
+	public void setFecha(int dia, int mes, int anyo)
+	{
+		
 	}
 }
