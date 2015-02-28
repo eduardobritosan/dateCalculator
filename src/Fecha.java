@@ -75,6 +75,10 @@ public class Fecha {
 	
 	public void setAnyo(int anyo)
 	{
+		if (anyo > 9999 || anyo < 1) 
+		{
+			throw new IllegalArgumentException("Anyo no valido.");
+		}
 		this.anyo = anyo;
 	}
 	
@@ -130,7 +134,7 @@ public class Fecha {
 	{
 		Fecha test = new Fecha(dia, mes, anyo);
 		if(!test.esFechaValida())
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Dia, mes o anyo no valido.");
 		this.dia = dia;
 		this.mes = mes;
 		this.anyo = anyo;

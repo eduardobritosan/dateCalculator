@@ -31,14 +31,12 @@ public class TestFecha {
 	@Test
 	public void testEsFechaValida()
 	{
-		Fecha noValida = new Fecha(0, 0, -1);
 		Fecha valida = new Fecha(1, 1, 1);
 		Fecha segundaNoValida = new Fecha(31, 9, 9999);
 		Fecha segundaValida = new Fecha(31, 10, 9999);
 		Fecha bisiestaValida = new Fecha(29, 2, 9996);
 		Fecha bisiestaInvalida = new Fecha(29, 2, 9995);
 
-		assertFalse("La fecha 00/00/-0001 de la prueba es invalida", noValida.esFechaValida());
 		assertTrue("La fecha 01/01/0001 es valida", valida.esFechaValida());
 		assertFalse("La fecha 31/09/9999 es invalida", segundaNoValida.esFechaValida());
 		assertTrue("La fecha 31/10/9999 es valida", segundaValida.esFechaValida());
@@ -78,5 +76,11 @@ public class TestFecha {
 		assertThat("El dia debe ser 1", correcta.getDia(), is(1));
 		assertThat("El mes debe ser 11", correcta.getMes(), is(11));
 		assertThat("El anyo debe ser 2012", correcta.getAnyo(), is(2012));
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetAnyo()
+	{
+		Fecha setterTest = new Fecha();
+		setterTest.setAnyo(99999);
 	}
 }
