@@ -65,6 +65,8 @@ public class Fecha {
 	
 	public void setMes(int mes)
 	{
+		if(mes > 12 || mes < 1)
+			throw new IllegalArgumentException("Mes no valido.");
 		this.mes = mes;
 	}
 	
@@ -76,9 +78,7 @@ public class Fecha {
 	public void setAnyo(int anyo)
 	{
 		if (anyo > 9999 || anyo < 1) 
-		{
 			throw new IllegalArgumentException("Anyo no valido.");
-		}
 		this.anyo = anyo;
 	}
 	
@@ -106,6 +106,7 @@ public class Fecha {
 		}
 		return true;
 	}
+	
 	/**
 	 * Calculo de el dia de la semana con el algoritmo de Gauss revisado.
 	 * @return
@@ -130,6 +131,7 @@ public class Fecha {
 		diaSemana = (int) ((dia + (2.6 * mes - 0.2) + anyoY + (anyoY / 4) + (anyoC / 4) - anyoC*2) % 7);
 		return diaSemana;
 	}
+	
 	public void setFecha(int dia, int mes, int anyo)
 	{
 		Fecha test = new Fecha(dia, mes, anyo);

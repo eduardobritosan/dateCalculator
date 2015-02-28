@@ -77,10 +77,18 @@ public class TestFecha {
 		assertThat("El mes debe ser 11", correcta.getMes(), is(11));
 		assertThat("El anyo debe ser 2012", correcta.getAnyo(), is(2012));
 	}
+	
 	@Test(expected = IllegalArgumentException.class)
 	public void testSetAnyo()
 	{
 		Fecha setterTest = new Fecha();
 		setterTest.setAnyo(99999);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetMes()
+	{
+		Fecha setterTest = new Fecha();
+		setterTest.setMes(-2);
 	}
 }
