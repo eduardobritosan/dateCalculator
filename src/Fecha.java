@@ -128,6 +128,11 @@ public class Fecha {
 	}
 	public void setFecha(int dia, int mes, int anyo)
 	{
-		
+		Fecha test = new Fecha(dia, mes, anyo);
+		if(!test.esFechaValida())
+			throw new IllegalArgumentException();
+		this.dia = dia;
+		this.mes = mes;
+		this.anyo = anyo;
 	}
 }
