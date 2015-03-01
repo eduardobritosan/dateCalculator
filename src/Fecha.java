@@ -166,4 +166,9 @@ public class Fecha {
 		}
 		return 31;
 	}
+	public String toString()
+	{
+		String fechaString = null;
+		return fechaString;
+	}
 }
