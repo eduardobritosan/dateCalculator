@@ -264,4 +264,19 @@ public class Fecha {
 		return resultado;
 	}
 	
+	public Fecha anteriorDia()
+	{
+		Fecha resultado = new Fecha();
+		
+		if(getAnyo() == 1 && getMes() == 1 && getDia() == 1)
+			throw new IllegalStateException("Dia fuera de rango.");	
+		if(getMes() == 1 && getDia() == 1)
+			resultado.setFecha(31, 12, getAnyo() - 1);
+		else if(getDia() == 1)
+			resultado.setFecha(getDiaMax(), getMes() - 1, getAnyo());
+		else
+			resultado.setFecha(getDia() - 1, getMes(), getAnyo());
+		return resultado;
+	}
+	
 }

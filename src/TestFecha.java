@@ -210,4 +210,16 @@ public class TestFecha {
 		assertThat("La fecha deberia ser Martes, 30 de septiembre de 2014.", 
 				    mesAnteriorTreinta.anteriorMes().toString(), is("Martes, 30 de septiembre de 2014."));
 	}
+	
+	@Test
+	public void testAnteriorDia()
+	{
+		Fecha anyoNuevo = new Fecha(31, 12, 2013);
+		Fecha diaNuevo = new Fecha(1, 1, 2013);
+		
+		assertThat("La fecha deberia ser Lunes, 30 de diciembre de 2013.",
+				    anyoNuevo.anteriorDia().toString(), is("Lunes, 30 de diciembre de 2013."));
+		assertThat("La fecha deberia ser Lunes, 31 de diciembre de 2012.",
+			    diaNuevo.anteriorDia().toString(), is("Lunes, 31 de diciembre de 2012."));
+	}
 }
