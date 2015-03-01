@@ -243,5 +243,9 @@ public class Fecha {
 			resultado.setDia(getDia());
 		return resultado;
 	}
+	public Fecha anteriorMes()
+	{
+		return this;
+	}
 	
 }
