@@ -141,4 +141,9 @@ public class Fecha {
 		this.mes = mes;
 		this.anyo = anyo;
 	}
+	
+	public int getDiaMax()
+	{
+		return 0;
+	}
 }

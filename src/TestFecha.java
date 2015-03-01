@@ -98,4 +98,18 @@ public class TestFecha {
 		Fecha setterDia = new Fecha();
 		setterDia.setDia(-1);
 	}
+	
+	@Test
+	public void testDiaMax()
+	{
+		Fecha diaMaxFebreroBisiesto = new Fecha(1,02,2012);
+		Fecha diaMaxOctubre = new Fecha(1,10,2012);
+		Fecha diaMaxFebrero = new Fecha(1,02,2013);
+		Fecha diaMaxSeptiembre = new Fecha(1,9,2012);
+		
+		assertThat(diaMaxFebreroBisiesto.getDiaMax(), is(29));
+		assertThat(diaMaxFebrero.getDiaMax(), is(28));
+		assertThat(diaMaxOctubre.getDiaMax(), is(31));
+		assertThat(diaMaxSeptiembre.getDiaMax(), is(30));
+	}
 }
