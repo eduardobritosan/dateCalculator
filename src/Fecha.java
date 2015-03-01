@@ -188,12 +188,28 @@ public class Fecha {
 		else
 			resultado.setDia(getDia());
 		resultado.setMes(getMes());
-		resultado.setAnyo(getAnyo()+1);
+		resultado.setAnyo(getAnyo() + 1);
 		return resultado;
 	}
 	
 	public Fecha siguienteMes()
 	{
-		return this;
+		Fecha resultado = new Fecha();
+
+		if(getAnyo() == 9999 && getMes() == 12)
+			throw new IllegalStateException("Mes fuera de rango.");				
+		if(getMes() == 12)
+		{
+			resultado.setAnyo(getAnyo() + 1);
+			resultado.setMes(1);
+		}
+		else
+		{
+			resultado.setAnyo(getAnyo());
+			resultado.setMes(getMes() + 1);
+		}
+		if(getDia() == getDiaMax())
+			resultado.setDia(resultado.getDiaMax());
+		return resultado;
 	}
 }

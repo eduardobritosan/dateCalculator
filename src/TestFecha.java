@@ -152,4 +152,12 @@ public class TestFecha {
 		assertThat("La fecha deberia ser Domingo, 30 de noviembre de 2014.", 
 				    mesSiguienteTreinta.siguienteMes().toString(), is("Domingo, 30 de noviembre de 2014."));
 	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testSiguienteMesException()
+	{
+		Fecha mesSiguienteException = new Fecha(31, 12, 9999);
+		
+		assertThat(mesSiguienteException.siguienteMes().toString(), is(""));
+	}
 }
