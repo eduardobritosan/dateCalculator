@@ -212,4 +212,19 @@ public class Fecha {
 			resultado.setDia(resultado.getDiaMax());
 		return resultado;
 	}
+	
+	public Fecha siguienteDia()
+	{
+		Fecha resultado = new Fecha();
+		
+		if(getAnyo() == 9999 && getMes() == 12 && getDia() == 31)
+			throw new IllegalStateException("Dia fuera de rango.");	
+		if(getMes() == 12 && getDia() == 31)
+			resultado.setFecha(1, 1, getAnyo() + 1);
+		else if(getDia() == getDiaMax())
+			resultado.setFecha(1, getMes() + 1, getAnyo());
+		else
+			resultado.setFecha(getDia() + 1, getMes(), getAnyo());
+		return resultado;
+	}
 }

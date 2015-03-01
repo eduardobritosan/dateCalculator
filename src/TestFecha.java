@@ -160,4 +160,27 @@ public class TestFecha {
 		
 		assertThat(mesSiguienteException.siguienteMes().toString(), is(""));
 	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testSiguienteDiaException()
+	{
+		Fecha diaSiguienteException = new Fecha(31, 12, 9999);
+		
+		assertThat(diaSiguienteException.siguienteDia().toString(), is(""));
+	}
+	
+	@Test
+	public void testSiguienteDia()
+	{
+		Fecha anyoNuevo = new Fecha(31, 12, 2013);
+		Fecha mesNuevo = new Fecha(30, 11, 2013);
+		Fecha diaNuevo = new Fecha(1, 1, 2013);
+		
+		assertThat("La fecha deberia ser Miercoles, 1 de enero de 2014.",
+				    anyoNuevo.siguienteDia().toString(), is("Miercoles, 1 de enero de 2014."));
+		assertThat("La fecha deberia ser Lunes, 1 de diciembre de 2013.",
+			    mesNuevo.siguienteDia().toString(), is("Lunes, 1 de diciembre de 2013."));
+		assertThat("La fecha deberia ser Miercoles, 2 de enero de 2013.",
+			    diaNuevo.siguienteDia().toString(), is("Miercoles, 2 de enero de 2013."));
+	}
 }
