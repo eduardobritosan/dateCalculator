@@ -53,7 +53,7 @@ public class TestFecha {
 		assertThat("El 29/02/2012 es bisiesto", miercolesBisiesto.esBisiesto(), is(true));
 		assertThat("El 29/02/2012 de un anyo bisiesto es miercoles", miercolesBisiesto.getDiaDeSemana(), is(3));
 		assertThat("El 01/01/0001 es lunes", primerDia.getDiaDeSemana(), is(1));
-		assertThat("El 31/12/9999 es domingo", ultimoDia.getDiaDeSemana(), is(0));
+		assertThat("El 31/12/9999 es viernes", ultimoDia.getDiaDeSemana(), is(5));
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -178,8 +178,8 @@ public class TestFecha {
 		
 		assertThat("La fecha deberia ser Miercoles, 1 de enero de 2014.",
 				    anyoNuevo.siguienteDia().toString(), is("Miercoles, 1 de enero de 2014."));
-		assertThat("La fecha deberia ser Lunes, 1 de diciembre de 2013.",
-			    mesNuevo.siguienteDia().toString(), is("Lunes, 1 de diciembre de 2013."));
+		assertThat("La fecha deberia ser Domingo, 1 de diciembre de 2013.",
+			    mesNuevo.siguienteDia().toString(), is("Domingo, 1 de diciembre de 2013."));
 		assertThat("La fecha deberia ser Miercoles, 2 de enero de 2013.",
 			    diaNuevo.siguienteDia().toString(), is("Miercoles, 2 de enero de 2013."));
 	}

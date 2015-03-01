@@ -135,7 +135,7 @@ public class Fecha {
 		stringAnyoSeparada = stringAnyo.split("(?<=\\G..)");
 		anyoC = Double.parseDouble(stringAnyoSeparada[0]);
 		anyoY = Double.parseDouble(stringAnyoSeparada[1]);
-		diaSemana = (int) ((dia + (2.6 * mes - 0.2) + anyoY + (anyoY / 4) + (anyoC / 4) - anyoC*2) % 7);
+		diaSemana = (int) ((dia + Math.floor(2.6 * mes - 0.2) + anyoY + Math.floor(anyoY / 4) + Math.floor(anyoC / 4) - anyoC*2) % 7);
 		return diaSemana;
 	}
 	
@@ -245,7 +245,23 @@ public class Fecha {
 	}
 	public Fecha anteriorMes()
 	{
-		return this;
+		Fecha resultado = new Fecha();
+
+		if(getAnyo() == 1 && getMes() == 1)
+			throw new IllegalStateException("Mes fuera de rango.");				
+		if(getMes() == 1)
+		{
+			resultado.setAnyo(getAnyo() - 1);
+			resultado.setMes(12);
+		}
+		else
+		{
+			resultado.setAnyo(getAnyo());
+			resultado.setMes(getMes() - 1);
+		}
+		if(getDia() == getDiaMax())
+			resultado.setDia(resultado.getDiaMax());
+		return resultado;
 	}
 	
 }
