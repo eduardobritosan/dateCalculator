@@ -91,4 +91,11 @@ public class TestFecha {
 		Fecha setterTest = new Fecha();
 		setterTest.setMes(-2);
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSetDia()
+	{
+		Fecha setterDia = new Fecha();
+		setterDia.setDia(-1);
+	}
 }
