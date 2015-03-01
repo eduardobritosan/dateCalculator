@@ -22,9 +22,9 @@ public class Fecha {
 	}
 	
 	public Fecha() {
-		setDia(1);
 		setMes(1);
 		setAnyo(1);
+		setDia(1);
 	}
 	
 	/**
@@ -35,9 +35,9 @@ public class Fecha {
 	 */
 	public Fecha(int dia, int mes, int anyo)
 	{
-		setDia(dia);
 		setMes(mes);
 		setAnyo(anyo);
+		setDia(dia);
 	}
 
 	/**
@@ -55,6 +55,8 @@ public class Fecha {
 	
 	public void setDia(int dia)
 	{
+		if(dia < 1 || dia > getDiaMax())
+			throw new IllegalArgumentException("Dia no valido");
 		this.dia = dia; 
 	}
 	
@@ -162,6 +164,6 @@ public class Fecha {
 			else
 				return 30;
 		}
-		return -1;
+		return 31;
 	}
 }
