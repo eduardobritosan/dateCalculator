@@ -115,4 +115,13 @@ public class TestFecha {
 		Fecha testString = new Fecha(1,2,2011);
 		assertThat(testString.toString(), is("Martes, 1 de febrero de 2011."));
 	}
+	
+	@Test
+	public void testSiguienteAnyo()
+	{
+		Fecha testAnyoBisiesto = new Fecha(29,2,2012);
+		
+		assertThat("La fecha deberia ser Jueves, 28 de Febrero de 2012.", 
+				    testAnyoBisiesto.siguienteAnyo().toString(), is("Jueves, 28 de febrero de 2013."));
+	}
 }

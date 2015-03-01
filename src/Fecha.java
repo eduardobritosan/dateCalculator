@@ -18,29 +18,12 @@ public class Fecha {
 	
 	private enum diasDeLaSemana
 	{
-		Domingo,
-		Lunes,
-		Martes,
-		Miercoles,
-		Jueves,
-		Viernes,
-		Sabado;
+		Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado;
 	}
 	
 	private enum meses
 	{
-		enero,
-		febrero,
-		marzo,
-		abril,
-		mayo,
-		junio,
-		julio,
-		agosto,
-		septiembre,
-		octubre,
-		noviembre,
-		diciembre;
+		enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre;
 	}
 	
 	public Fecha() {
@@ -183,15 +166,29 @@ public class Fecha {
 		{
 			if(getMes() % 2 == 0)
 				return 31;
-			else
-				return 30;
 		}
-		return 31;
+		return 30;
 	}
 	public String toString()
 	{
 		String fechaString = (diasDeLaSemana.values()[getDiaDeSemana()]+ ", " + getDia() + " de " 
 						      + meses.values()[getMes()-1] + " de " + getAnyo() + ".");
 		return fechaString;
+	}
+	
+	public Fecha siguienteAnyo()
+	{
+		if(getAnyo() == 9999)
+			throw new IllegalStateException("Anyo fuera de rango.");
+		
+		Fecha resultado = new Fecha();
+		
+		if(getDia() == getDiaMax() && getMes() == 2 && esBisiesto())
+			resultado.setDia(28);
+		else
+			resultado.setDia(getDia());
+		resultado.setMes(getMes());
+		resultado.setAnyo(getAnyo()+1);
+		return resultado;
 	}
 }
