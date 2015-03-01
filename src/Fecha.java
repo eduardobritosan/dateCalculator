@@ -144,6 +144,24 @@ public class Fecha {
 	
 	public int getDiaMax()
 	{
-		return 0;
+		if(getMes() > 0 && getMes() < 8)
+		{
+			if(getMes() == 2 && esBisiesto())
+				return 29;
+			else if(getMes() == 2)
+				return 28;
+			else if(getMes() % 2 == 0)
+				return 30;
+			else
+				return 31;
+		}
+		else if(getMes() <= 12)
+		{
+			if(getMes() % 2 == 0)
+				return 31;
+			else
+				return 30;
+		}
+		return -1;
 	}
 }
