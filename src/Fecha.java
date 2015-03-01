@@ -227,4 +227,21 @@ public class Fecha {
 			resultado.setFecha(getDia() + 1, getMes(), getAnyo());
 		return resultado;
 	}
+	
+	public Fecha anteriorAnyo()
+	{
+		if(getAnyo() == 1)
+			throw new IllegalStateException("Anyo fuera de rango.");
+		
+		Fecha resultado = new Fecha();
+		resultado.setMes(getMes());
+		resultado.setAnyo(getAnyo() - 1);
+		
+		if(getDia() == getDiaMax() && getMes() == 2 && esBisiesto())
+			resultado.setDia(28);
+		else
+			resultado.setDia(getDia());
+		return resultado;
+	}
+	
 }
