@@ -120,8 +120,18 @@ public class TestFecha {
 	public void testSiguienteAnyo()
 	{
 		Fecha testAnyoBisiesto = new Fecha(29,2,2012);
+		Fecha testAnyo = new Fecha(27,9,2014);
 		
 		assertThat("La fecha deberia ser Jueves, 28 de Febrero de 2012.", 
 				    testAnyoBisiesto.siguienteAnyo().toString(), is("Jueves, 28 de febrero de 2013."));
+		assertThat("La fecha deberia ser Domingo, 27 de septiembre de 2015.", 
+			        testAnyo.siguienteAnyo().toString(), is("Domingo, 27 de septiembre de 2015."));
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void testSiguienteAnyoException()
+	{
+		Fecha testAnyoErroneo = new Fecha(1,1,9999);
+		assertThat(testAnyoErroneo.siguienteAnyo().toString(), is(""));
 	}
 }
