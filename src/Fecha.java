@@ -191,4 +191,9 @@ public class Fecha {
 		resultado.setAnyo(getAnyo()+1);
 		return resultado;
 	}
+	
+	public Fecha siguienteMes()
+	{
+		return this;
+	}
 }

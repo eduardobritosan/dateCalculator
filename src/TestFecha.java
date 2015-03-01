@@ -15,11 +15,11 @@ public class TestFecha {
 	@Test
 	public void testEsBisiesto() 
 	{
-		Fecha primerBisiesto = new Fecha(1,1,9996);
-		Fecha noBisiesto = new Fecha(1,1,1);
-		Fecha segundoBisiesto = new Fecha(1,1,4);
-		Fecha tercerBisiesto = new Fecha(1,1,400);
-		Fecha segundoNoBisiesto = new Fecha(1,1,100);
+		Fecha primerBisiesto = new Fecha(1, 1, 9996);
+		Fecha noBisiesto = new Fecha(1, 1, 1);
+		Fecha segundoBisiesto = new Fecha(1, 1, 4);
+		Fecha tercerBisiesto = new Fecha(1, 1, 400);
+		Fecha segundoNoBisiesto = new Fecha(1, 1, 100);
 		
 		assertTrue("El anyo 9966 es bisiesto", primerBisiesto.esBisiesto());
 		assertFalse("El anyo 1 no es bisiesto",noBisiesto.esBisiesto());
@@ -60,7 +60,7 @@ public class TestFecha {
 	public void testSetFechaExcepcion()
 	{
 		Fecha erronea = new Fecha();
-		erronea.setFecha(0,0,0000);
+		erronea.setFecha(0, 0, 0000);
 	}
 	
 	@Test
@@ -98,10 +98,10 @@ public class TestFecha {
 	@Test
 	public void testDiaMax()
 	{
-		Fecha diaMaxFebreroBisiesto = new Fecha(1,02,2012);
-		Fecha diaMaxOctubre = new Fecha(1,10,2012);
-		Fecha diaMaxFebrero = new Fecha(1,02,2013);
-		Fecha diaMaxSeptiembre = new Fecha(1,9,2012);
+		Fecha diaMaxFebreroBisiesto = new Fecha(1, 02, 2012);
+		Fecha diaMaxOctubre = new Fecha(1, 10, 2012);
+		Fecha diaMaxFebrero = new Fecha(1, 02, 2013);
+		Fecha diaMaxSeptiembre = new Fecha(1, 9, 2012);
 		
 		assertThat(diaMaxFebreroBisiesto.getDiaMax(), is(29));
 		assertThat(diaMaxFebrero.getDiaMax(), is(28));
@@ -112,17 +112,17 @@ public class TestFecha {
 	@Test
 	public void testToString()
 	{
-		Fecha testString = new Fecha(1,2,2011);
+		Fecha testString = new Fecha(1, 2, 2011);
 		assertThat(testString.toString(), is("Martes, 1 de febrero de 2011."));
 	}
 	
 	@Test
 	public void testSiguienteAnyo()
 	{
-		Fecha testAnyoBisiesto = new Fecha(29,2,2012);
-		Fecha testAnyo = new Fecha(27,9,2014);
+		Fecha testAnyoBisiesto = new Fecha(29, 2, 2012);
+		Fecha testAnyo = new Fecha(27, 9, 2014);
 		
-		assertThat("La fecha deberia ser Jueves, 28 de Febrero de 2012.", 
+		assertThat("La fecha deberia ser Jueves, 28 de febrero de 2013.", 
 				    testAnyoBisiesto.siguienteAnyo().toString(), is("Jueves, 28 de febrero de 2013."));
 		assertThat("La fecha deberia ser Domingo, 27 de septiembre de 2015.", 
 			        testAnyo.siguienteAnyo().toString(), is("Domingo, 27 de septiembre de 2015."));
@@ -131,7 +131,25 @@ public class TestFecha {
 	@Test(expected = IllegalStateException.class)
 	public void testSiguienteAnyoException()
 	{
-		Fecha testAnyoErroneo = new Fecha(1,1,9999);
+		Fecha testAnyoErroneo = new Fecha(1, 1, 9999);
 		assertThat(testAnyoErroneo.siguienteAnyo().toString(), is(""));
+	}
+	
+	@Test
+	public void testSiguienteMes()
+	{
+		Fecha mesSiguienteBisiesto = new Fecha(31, 1, 2012);
+		Fecha mesSiguienteNoBisiesto = new Fecha(31, 1, 2013);
+		Fecha mesSiguienteFinDeAnyo = new Fecha(31, 12, 2013);
+		Fecha mesSiguienteTreinta = new Fecha(31, 10, 2014);
+		
+		assertThat("La fecha deberia ser Miercoles, 29 de febrero de 2012.", 
+					mesSiguienteBisiesto.siguienteMes().toString(),is("Miercoles, 29 de febrero de 2012."));
+		assertThat("La fecha deberia ser Jueves, 28 de febrero de 2013.",
+				    mesSiguienteNoBisiesto.siguienteMes().toString(), is("Jueves, 28 de febrero de 2013."));
+		assertThat("La fecha deberia ser Viernes, 31 de enero de 2014.", 
+				    mesSiguienteFinDeAnyo.siguienteMes().toString(), is("Viernes, 31 de enero de 2014."));
+		assertThat("La fecha deberia ser Domingo, 30 de noviembre de 2014.", 
+				    mesSiguienteTreinta.siguienteMes().toString(), is("Domingo, 30 de noviembre de 2014."));
 	}
 }
