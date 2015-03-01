@@ -113,6 +113,6 @@ public class TestFecha {
 	public void testToString()
 	{
 		Fecha testString = new Fecha(1,2,2011);
-		assertThat(testString.toString(), is("Martes, 1 de febrero de 2011"));
+		assertThat(testString.toString(), is("Martes, 1 de febrero de 2011."));
 	}
 }

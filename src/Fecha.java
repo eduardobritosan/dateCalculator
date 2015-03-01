@@ -16,9 +16,31 @@ public class Fecha {
 	private int mes;
 	private int anyo;
 	
-	public enum diasDeLaSemana
+	private enum diasDeLaSemana
 	{
-		DOMINGO, LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO;
+		Domingo,
+		Lunes,
+		Martes,
+		Miercoles,
+		Jueves,
+		Viernes,
+		Sabado;
+	}
+	
+	private enum meses
+	{
+		enero,
+		febrero,
+		marzo,
+		abril,
+		mayo,
+		junio,
+		julio,
+		agosto,
+		septiembre,
+		octubre,
+		noviembre,
+		diciembre;
 	}
 	
 	public Fecha() {
@@ -168,7 +190,8 @@ public class Fecha {
 	}
 	public String toString()
 	{
-		String fechaString = null;
+		String fechaString = (diasDeLaSemana.values()[getDiaDeSemana()]+ ", " + getDia() + " de " 
+						      + meses.values()[getMes()-1] + " de " + getAnyo() + ".");
 		return fechaString;
 	}
 }
