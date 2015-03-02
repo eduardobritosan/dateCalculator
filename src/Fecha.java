@@ -44,12 +44,37 @@ public class Fecha {
 		setAnyo(anyo);
 		setDia(dia);
 	}
+	
+	private double mod(double x, double y)
+	{
+	    double result = x % y;
+	    if (result < 0)
+	    {
+	        result += y;
+	    }
+	    return result;
+	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Fecha fecha1 = new Fecha ( 28 , 2 , 2012) ;
+		System.out.println(fecha1); // martes 28 Feb 2012
+		System.out.println(fecha1.siguienteDia()); // mi´ercoles 29 Feb 2012
+		System.out.println(fecha1.siguienteDia()); // jueves 1 Mar 2012
+		System.out.println(fecha1.siguienteMes()); // domingo 1 Apr 2012
+		System.out.println(fecha1.siguienteAnyo()); // lunes 1 Apr 2013
+		Fecha fecha2 = new Fecha ( 2 , 1 , 2012) ;
+		System.out.println(fecha2); // lunes 2 Ene 2012
+		System.out.println(fecha2.anteriorDia()); // domingo 1 Ene 2012
+		System.out.println(fecha2.anteriorDia()); // s´abado 31 Dic 2011
+		System.out.println(fecha2.anteriorMes()); // mi´ercoles 30 Nov 2011
+		System.out.println(fecha2.anteriorAnyo()); // martes 30 Nov 2010
+		Fecha d3 = new Fecha (29 , 2 ,2012 ) ;
+		System.out.println(d3.anteriorAnyo()); // lunes 28 Feb 2011
+		// Fecha fecha4 = new Fecha(31, 11, 2099); // D´ıa, mes o a~no no v´alidos
+		// Fecha fecha5 = new Fecha(29, 2, 2011); // D´ıa, mes o a~no no v´alidos
 
 	}
 	
@@ -135,7 +160,7 @@ public class Fecha {
 		stringAnyoSeparada = stringAnyo.split("(?<=\\G..)");
 		anyoC = Double.parseDouble(stringAnyoSeparada[0]);
 		anyoY = Double.parseDouble(stringAnyoSeparada[1]);
-		diaSemana = (int) ((dia + Math.floor(2.6 * mes - 0.2) + anyoY + Math.floor(anyoY / 4) + Math.floor(anyoC / 4) - anyoC*2) % 7);
+		diaSemana = (int) mod((dia + Math.floor(2.6 * mes - 0.2) + anyoY + Math.floor(anyoY / 4) + Math.floor(anyoC / 4) - anyoC * 2), 7);
 		return diaSemana;
 	}
 	
@@ -180,52 +205,49 @@ public class Fecha {
 	{
 		if(getAnyo() == 9999)
 			throw new IllegalStateException("Anyo fuera de rango.");
-		
-		Fecha resultado = new Fecha();
-		
+				
 		if(getDia() == getDiaMax() && getMes() == 2 && esBisiesto())
-			resultado.setDia(28);
+			setDia(28);
 		else
-			resultado.setDia(getDia());
-		resultado.setMes(getMes());
-		resultado.setAnyo(getAnyo() + 1);
-		return resultado;
+			setDia(getDia());
+		setMes(getMes());
+		setAnyo(getAnyo() + 1);
+		return this;
 	}
 	
 	public Fecha siguienteMes()
 	{
-		Fecha resultado = new Fecha();
-
+		Fecha auxFecha = new Fecha(getDia(), getMes(), getAnyo());
+		
 		if(getAnyo() == 9999 && getMes() == 12)
 			throw new IllegalStateException("Mes fuera de rango.");				
 		if(getMes() == 12)
 		{
-			resultado.setAnyo(getAnyo() + 1);
-			resultado.setMes(1);
+			setAnyo(getAnyo() + 1);
+			setMes(1);
 		}
 		else
 		{
-			resultado.setAnyo(getAnyo());
-			resultado.setMes(getMes() + 1);
+			setMes(getMes() + 1);
 		}
-		if(getDia() == getDiaMax())
-			resultado.setDia(resultado.getDiaMax());
-		return resultado;
+		if(auxFecha.getDia() == auxFecha.getDiaMax())
+			setDia(getDiaMax());
+		return this;
 	}
 	
 	public Fecha siguienteDia()
 	{
-		Fecha resultado = new Fecha();
+		Fecha auxFecha = new Fecha(getDia(), getMes(), getAnyo());
 		
 		if(getAnyo() == 9999 && getMes() == 12 && getDia() == 31)
 			throw new IllegalStateException("Dia fuera de rango.");	
 		if(getMes() == 12 && getDia() == 31)
-			resultado.setFecha(1, 1, getAnyo() + 1);
-		else if(getDia() == getDiaMax())
-			resultado.setFecha(1, getMes() + 1, getAnyo());
+			setFecha(1, 1, getAnyo() + 1);
+		else if(auxFecha.getDia() == auxFecha.getDiaMax())
+			setFecha(1, getMes() + 1, getAnyo());
 		else
-			resultado.setFecha(getDia() + 1, getMes(), getAnyo());
-		return resultado;
+			setFecha(getDia() + 1, getMes(), getAnyo());
+		return this;
 	}
 	
 	public Fecha anteriorAnyo()
@@ -233,50 +255,48 @@ public class Fecha {
 		if(getAnyo() == 1)
 			throw new IllegalStateException("Anyo fuera de rango.");
 		
-		Fecha resultado = new Fecha();
-		resultado.setMes(getMes());
-		resultado.setAnyo(getAnyo() - 1);
+		Fecha auxFecha = new Fecha(getDia(), getMes(), getAnyo());
+		setMes(getMes());
+		setAnyo(getAnyo() - 1);
 		
-		if(getDia() == getDiaMax() && getMes() == 2 && esBisiesto())
-			resultado.setDia(28);
+		if(auxFecha.getDia() == auxFecha.getDiaMax() && auxFecha.getMes() == 2 && auxFecha.esBisiesto())
+			setDia(28);
 		else
-			resultado.setDia(getDia());
-		return resultado;
+			setDia(getDia());
+		return this;
 	}
 	public Fecha anteriorMes()
 	{
-		Fecha resultado = new Fecha();
+		Fecha auxFecha = new Fecha(getDia(), getMes(), getAnyo());
 
 		if(getAnyo() == 1 && getMes() == 1)
 			throw new IllegalStateException("Mes fuera de rango.");				
 		if(getMes() == 1)
 		{
-			resultado.setAnyo(getAnyo() - 1);
-			resultado.setMes(12);
+			setAnyo(getAnyo() - 1);
+			setMes(12);
 		}
 		else
 		{
-			resultado.setAnyo(getAnyo());
-			resultado.setMes(getMes() - 1);
+			setAnyo(getAnyo());
+			setMes(getMes() - 1);
 		}
-		if(getDia() == getDiaMax())
-			resultado.setDia(resultado.getDiaMax());
-		return resultado;
+		if(auxFecha.getDia() == auxFecha.getDiaMax())
+			setDia(getDiaMax());
+		return this;
 	}
 	
 	public Fecha anteriorDia()
-	{
-		Fecha resultado = new Fecha();
-		
+	{	
 		if(getAnyo() == 1 && getMes() == 1 && getDia() == 1)
 			throw new IllegalStateException("Dia fuera de rango.");	
 		if(getMes() == 1 && getDia() == 1)
-			resultado.setFecha(31, 12, getAnyo() - 1);
+			setFecha(31, 12, getAnyo() - 1);
 		else if(getDia() == 1)
-			resultado.setFecha(getDiaMax(), getMes() - 1, getAnyo());
+			setFecha(getDiaMax(), getMes() - 1, getAnyo());
 		else
-			resultado.setFecha(getDia() - 1, getMes(), getAnyo());
-		return resultado;
+			setFecha(getDia() - 1, getMes(), getAnyo());
+		return this;
 	}
 	
 }
